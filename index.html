@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taskora | Intelligent Job Scheduler</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="hero">
+
+        <div class="brand">
+            <div class="logo">T</div>
+
+            <div>
+                <h1>Taskora</h1>
+                <p>Intelligent Task Scheduler</p>
+            </div>
+        </div>
+
+        
+
+    </header>
+
+
+    <!-- Introduction -->
+    <section class="intro">
+
+        <div>
+            <h2>Schedule smarter. <span>Earn more.</span></h2>
+
+            <p>
+                Optimize jobs with deadlines using
+                Greedy Algorithm, Max-Heap and Dynamic Programming.
+            </p>
+        </div>
+
+        <div class="algorithm-tags">
+            <span>Greedy</span>
+            <span>Max-Heap</span>
+            <span>Dynamic Programming</span>
+        </div>
+
+    </section>
+
+
+    <!-- Job Input -->
+    <section class="card">
+
+        <div class="section-title">
+            <div>
+                <span class="number">01</span>
+                <h2>Add Jobs</h2>
+            </div>
+
+            <button class="sample-btn" onclick="loadSampleJobs()">
+                ⚡ Load Sample
+            </button>
+        </div>
+
+        <div class="input-grid">
+
+            <div class="input-box">
+                <label>Job ID</label>
+                <input type="text"
+                       id="jobId"
+                       placeholder="A">
+            </div>
+
+            <div class="input-box">
+                <label>Deadline</label>
+                <input type="number"
+                       id="deadline"
+                       min="1"
+                       placeholder="2">
+            </div>
+
+            <div class="input-box">
+                <label>Profit</label>
+                <input type="number"
+                       id="profit"
+                       min="0"
+                       placeholder="100">
+            </div>
+
+            <button class="add-btn" onclick="addJob()">
+                + Add Job
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Job Table -->
+    <section class="card">
+
+        <div class="section-title">
+
+            <div>
+                <span class="number">02</span>
+                <h2>Job Queue</h2>
+            </div>
+
+            <span class="job-count" id="jobCount">
+                0 Jobs
+            </span>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>JOB</th>
+                        <th>DEADLINE</th>
+                        <th>PROFIT</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+
+                <tbody id="jobTableBody">
+                </tbody>
+
+            </table>
+
+            <div id="emptyState" class="empty-state">
+                <div>◈</div>
+                <p>No jobs added yet</p>
+                <small>Add jobs or load the sample data</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Run Scheduler -->
+    <section class="run-section">
+
+        <button class="run-btn" onclick="runScheduler()">
+            <span>▶</span>
+            Run Taskora Scheduler
+        </button>
+
+        <p>
+            Analyze jobs using three algorithmic approaches
+        </p>
+
+    </section>
+
+
+    <!-- Results -->
+    <section class="results-section">
+
+        <div class="section-title">
+
+            <div>
+                <span class="number">03</span>
+                <h2>Optimization Results</h2>
+            </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+            <!-- Greedy -->
+            <div class="result-card greedy-card">
+
+                <div class="result-icon">G</div>
+
+                <h3>Greedy Algorithm</h3>
+
+                <p class="result-label">
+                    Maximum Profit
+                </p>
+
+                <div class="profit" id="greedyProfit">
+                    —
+                </div>
+
+                <p class="schedule-text">
+                    Schedule:
+                </p>
+
+                <div id="greedyResult">
+                    Run scheduler to calculate.
+                </div>
+
+            </div>
+
+
+            <!-- Heap -->
+            <div class="result-card heap-card">
+
+                <div class="result-icon">H</div>
+
+                <h3>Max-Heap</h3>
+
+                <p class="result-label">
+                    Profit Priority Order
+                </p>
+
+                <div id="heapResult" class="heap-list">
+                    Waiting for analysis...
+                </div>
+
+            </div>
+
+
+            <!-- DP -->
+            <div class="result-card dp-card">
+
+                <div class="result-icon">D</div>
+
+                <h3>Dynamic Programming</h3>
+
+                <p class="result-label">
+                    Maximum Profit
+                </p>
+
+                <div class="profit" id="dpProfit">
+                    —
+                </div>
+
+                <p class="small-text">
+                    Used for comparison with Greedy.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Final Schedule -->
+    <section class="card final-card">
+
+        <div class="section-title">
+
+            <div>
+                <span class="number">04</span>
+                <h2>Final Schedule</h2>
+            </div>
+
+        </div>
+
+        <div id="finalSchedule" class="timeline">
+            <p class="waiting">
+                Your optimized schedule will appear here.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            <strong>Taskora</strong> · Job Sequencing with Deadlines
+        </p>
+
+        <p>
+            Greedy Algorithm · Max-Heap · Dynamic Programming
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
